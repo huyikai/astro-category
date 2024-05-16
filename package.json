@@ -1,6 +1,10 @@
 {
   "private": true,
   "scripts": {
-    "start:demo": "cd demo && pnpm dev"
+    "dev": "cd demo && pnpm dev",
+    "commit": "git-cz"
+  },
+  "devDependencies": {
+    "git-cz": "^4.9.0"
   }
 }

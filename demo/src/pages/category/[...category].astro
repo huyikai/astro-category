@@ -1,17 +1,12 @@
 ---
-import { CategoryCatalog, getStaticPathsHelper } from 'astro-category';
+import { CategoryRoute, categoryHelper } from 'astro-category';
 
-export const getStaticPaths = getStaticPathsHelper();
-interface CategoryProps {
-  subContent: any[];
-  subCategory: any[];
-}
-const { category } = Astro.params;
-const { subContent = [], subCategory = [] } = Astro.props as CategoryProps;
+export const getStaticPaths = categoryHelper({ dir: 'posts' });
+
+const { category } = Astro.props;
 ---
 
-<CategoryCatalog
+<CategoryRoute
   category={category}
-  subContent={subContent}
-  subCategory={subCategory}
+  dir='posts'
 />
