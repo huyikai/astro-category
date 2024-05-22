@@ -6,9 +6,11 @@ interface RenderableEntry {
   id: string;
 }
 export const categoryHelper =
-  ({ dir = 'posts' }: { dir?: string }) =>
+  ({ collection }: { collection?: string }) =>
   async () => {
-    const allPosts: RenderableEntry[] = await getCollection(dir);
+    console.log('collection',collection)
+    const allPosts: RenderableEntry[] = await getCollection(collection);
+    // console.log('allPosts', allPosts);
     const directoryPaths = new Set<string>();
 
     allPosts.forEach((post) => {
@@ -39,12 +41,10 @@ export const categoryHelper =
           name: i.split('/').pop(),
           path: i
         }));
-
+      console.log('filteredPosts', filteredPosts);
       return {
         params: { category: dir },
         props: {
-          subContent: filteredPosts,
-          subCategory: subCategories,
           category: {
             dir: dir,
             subContent: filteredPosts,

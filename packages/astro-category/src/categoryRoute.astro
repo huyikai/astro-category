@@ -3,11 +3,12 @@ import CategoryItem from './categoryItem.astro';
 
 interface Props {
   category: any;
-  dir?: string;
+  collection: string;
+  root: string;
   linkStyle?: string;
 }
 
-const { category, dir = 'posts', linkStyle } = Astro.props;
+const { category, collection, root, linkStyle } = Astro.props;
 ---
 
 <p>Current Category: {category.dir}</p>
@@ -19,7 +20,7 @@ const { category, dir = 'posts', linkStyle } = Astro.props;
       {category.subCategory.map((item: any) => (
         <CategoryItem
           title={item.name}
-          url={`/category/${item.path}`}
+          url={`/${root}/${item.path}`}
           style={linkStyle}
         />
       ))}
@@ -33,7 +34,7 @@ const { category, dir = 'posts', linkStyle } = Astro.props;
       {category.subContent.map((item: any) => (
         <CategoryItem
           title={item.data.title}
-          url={`/${dir}/${item.slug}/`}
+          url={`/${collection}/${item.slug}/`}
           style={linkStyle}
         />
       ))}

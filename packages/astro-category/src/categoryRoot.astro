@@ -3,13 +3,14 @@ import { getCollection } from 'astro:content';
 import CategoryItem from './categoryItem.astro';
 
 interface Props {
-  dir?: string;
+  collection?: string;
+  root?: string;
   linkStyle?: string;
 }
 
-const { dir = 'posts', linkStyle } = Astro.props;
+const { collection, root = 'category', linkStyle } = Astro.props;
 
-const allPosts = await getCollection(dir);
+const allPosts = await getCollection(collection);
 
 const category = [
   ...new Set(
@@ -27,12 +28,12 @@ const content = [
 ];
 ---
 
-<h1>Root</h1>
+<h1>{collection}</h1>
 <h2>SubContent</h2>
 {
   content.map((cate: any) => (
     <CategoryItem
-      url={`/${dir}/${cate.slug}/`}
+      url={`/${collection}/${cate.slug}/`}
       title={cate.data.title}
       style={linkStyle}
     />
@@ -43,7 +44,7 @@ const content = [
   category.map((cate: any) => (
     <CategoryItem
       title={cate}
-      url={`/category/${cate}`}
+      url={`/${root}/${cate}`}
       style={linkStyle}
     />
   ))

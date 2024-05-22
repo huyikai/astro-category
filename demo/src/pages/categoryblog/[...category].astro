@@ -1,13 +1,13 @@
 ---
 import { CategoryRoute, categoryHelper } from 'astro-category';
 
-export const getStaticPaths = categoryHelper({ collection: 'posts' });
+export const getStaticPaths = categoryHelper({ collection: 'blogs' });
 
 const { category } = Astro.props;
 ---
 
 <CategoryRoute
   category={category}
-  root="category"
-  collection='posts'
+  root="categoryblog"
+  collection="blogs"
 />
