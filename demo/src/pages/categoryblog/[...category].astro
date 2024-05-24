@@ -1,6 +1,6 @@
 ---
 import { CategoryRoute, categoryHelper } from 'astro-category';
-
+import '@styles/global.css';
 export const getStaticPaths = categoryHelper({ collection: 'blogs' });
 
 const { category } = Astro.props;
@@ -10,4 +10,5 @@ const { category } = Astro.props;
   category={category}
   root="categoryblog"
   collection="blogs"
+  linkClassName="blog-link red round-20"
 />

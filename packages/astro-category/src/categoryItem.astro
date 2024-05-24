@@ -3,12 +3,13 @@ interface Props {
   title: string;
   url: string;
   style?: string;
+  className?: string;
 }
-const { title, url, style } = Astro.props;
+const { title, url, style, className } = Astro.props;
 ---
 
 <a
-  class="link"
+  class={`link ${className}`}
   href={url}
   style={style}
 >
@@ -18,7 +19,6 @@ const { title, url, style } = Astro.props;
   .link {
     margin: 0 5px;
     text-decoration: none;
-    color: inherit;
   }
   .link:hover {
     text-decoration: underline;

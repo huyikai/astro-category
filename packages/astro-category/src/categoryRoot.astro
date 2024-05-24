@@ -5,10 +5,22 @@ import CategoryItem from './categoryItem.astro';
 interface Props {
   collection?: string;
   root?: string;
+  title?: string | boolean;
+  categoryTitle?: string | boolean;
+  contentTitle?: string | boolean;
   linkStyle?: string;
+  linkClassName?: string;
 }
 
-const { collection, root = 'category', linkStyle } = Astro.props;
+const {
+  collection,
+  root = 'category',
+  linkStyle,
+  linkClassName,
+  title,
+  categoryTitle,
+  contentTitle
+} = Astro.props;
 
 const allPosts = await getCollection(collection);
 
@@ -28,24 +40,27 @@ const content = [
 ];
 ---
 
-<h1>{collection}</h1>
-<h2>SubContent</h2>
+{title !== false && <h1>{title || collection}</h1>}
+
+{contentTitle !== false && <h2>{contentTitle || 'SubContent'}</h2>}
 {
   content.map((cate: any) => (
     <CategoryItem
       url={`/${collection}/${cate.slug}/`}
       title={cate.data.title}
       style={linkStyle}
+      className={linkClassName}
     />
   ))
 }
-<h2>SubCategory</h2>
+{categoryTitle !== false && <h2>{categoryTitle || 'SubCategory'}</h2>}
 {
   category.map((cate: any) => (
     <CategoryItem
       title={cate}
       url={`/${root}/${cate}`}
       style={linkStyle}
+      className={linkClassName}
     />
   ))
 }

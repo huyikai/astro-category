@@ -1,0 +1,31 @@
+.post-link,
+.blog-link {
+  padding: 5px 15px;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.post-link {
+  background-color: lightblue;
+}
+
+.blog-link {
+  background-color: lightcoral;
+}
+
+.blue {
+  color: blue;
+}
+
+.red {
+  color: red;
+}
+
+.round-5 {
+  border-radius: 5px;
+}
+
+.round-20 {
+  border-radius: 20px;
+}

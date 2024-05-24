@@ -6,9 +6,10 @@ interface Props {
   collection: string;
   root: string;
   linkStyle?: string;
+  linkClassName?: string;
 }
 
-const { category, collection, root, linkStyle } = Astro.props;
+const { category, collection, root, linkStyle, linkClassName } = Astro.props;
 ---
 
 <p>Current Category: {category.dir}</p>
@@ -22,6 +23,7 @@ const { category, collection, root, linkStyle } = Astro.props;
           title={item.name}
           url={`/${root}/${item.path}`}
           style={linkStyle}
+          className={linkClassName}
         />
       ))}
     </>
@@ -36,6 +38,7 @@ const { category, collection, root, linkStyle } = Astro.props;
           title={item.data.title}
           url={`/${collection}/${item.slug}/`}
           style={linkStyle}
+          className={linkClassName}
         />
       ))}
     </>

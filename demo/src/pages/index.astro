@@ -1,6 +1,55 @@
 ---
 import { CategoryRoot } from 'astro-category';
+import '@styles/global.css';
 ---
 
-<CategoryRoot collection="posts" />
-<CategoryRoot collection="blogs" root="categoryblog" />
+<div class="example-container">
+  <div class="item">
+    <h1>Default</h1>
+    <CategoryRoot collection="posts" />
+    <CategoryRoot
+      collection="blogs"
+      root="categoryblog"
+    />
+  </div>
+
+  <div class="item">
+    <h1>Custom</h1>
+    <CategoryRoot
+      title={false}
+      categoryTitle={false}
+      contentTitle={false}
+      collection="posts"
+      linkClassName="post-link blue round-5"
+    />
+    <CategoryRoot
+      title={false}
+      categoryTitle={false}
+      contentTitle={false}
+      collection="blogs"
+      root="categoryblog"
+      linkClassName="blog-link red round-20"
+    />
+  </div>
+</div>
+<style>
+  .example-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    flex-flow: row nowrap;
+    justify-content: center;
+
+    .item {
+      width: 50%;
+      height: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      &:nth-child(1) {
+        border-right: 1px solid #ddd;
+      }
+    }
+  }
+</style>
