@@ -2,9 +2,13 @@
   "private": true,
   "scripts": {
     "dev": "cd demo && pnpm dev",
+    "docs": "cd docs && pnpm dev",
     "commit": "git-cz"
   },
   "devDependencies": {
     "git-cz": "^4.9.0"
+  },
+  "engines": {
+    "node": "^20.0.0"
   }
 }

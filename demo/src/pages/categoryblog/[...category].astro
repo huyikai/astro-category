@@ -6,6 +6,8 @@ export const getStaticPaths = categoryHelper({ collection: 'blogs' });
 const { category } = Astro.props;
 ---
 
+<p>Current path: {category.dir}</p>
+
 <CategoryRoute
   category={category}
   root="categoryblog"

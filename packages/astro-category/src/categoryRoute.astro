@@ -12,12 +12,12 @@ interface Props {
 const { category, collection, root, linkStyle, linkClassName } = Astro.props;
 ---
 
-<p>Current Category: {category.dir}</p>
-
 {
   category.subCategory && category.subCategory.length > 0 && (
     <>
-      <h2>SubCategory</h2>
+      <slot name="subCategory">
+        <h2>SubCategory</h2>
+      </slot>
       {category.subCategory.map((item: any) => (
         <CategoryItem
           title={item.name}
@@ -32,7 +32,9 @@ const { category, collection, root, linkStyle, linkClassName } = Astro.props;
 {
   category.subContent && category.subContent.length > 0 && (
     <>
-      <h2>SubContent</h2>
+      <slot name="subContent">
+        <h2>SubContent</h2>
+      </slot>
       {category.subContent.map((item: any) => (
         <CategoryItem
           title={item.data.title}
