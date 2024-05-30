@@ -5,11 +5,9 @@ import CategoryItem from './categoryItem.astro';
 interface Props {
   collection?: string;
   root?: string;
-  title?: string | boolean;
-  categoryTitle?: string | boolean;
-  contentTitle?: string | boolean;
   linkStyle?: string;
   linkClassName?: string;
+  title?: string | boolean;
 }
 
 const {
@@ -17,9 +15,7 @@ const {
   root = 'category',
   linkStyle,
   linkClassName,
-  title,
-  categoryTitle,
-  contentTitle
+  title = true
 } = Astro.props;
 
 const allPosts = await getCollection(collection);
@@ -40,27 +36,45 @@ const content = [
 ];
 ---
 
-{title !== false && <h1>{title || collection}</h1>}
+<div>
+  {
+    title && (
+      <slot name="title">
+        {typeof title === 'string' ? (
+          <h2>{title}</h2>
+        ) : (
+          title && <h2>{collection}</h2>
+        )}
+      </slot>
+    )
+  }
 
-{contentTitle !== false && <h2>{contentTitle || 'SubContent'}</h2>}
-{
-  content.map((cate: any) => (
-    <CategoryItem
-      url={`/${collection}/${cate.slug}/`}
-      title={cate.data.title}
-      style={linkStyle}
-      className={linkClassName}
-    />
-  ))
-}
-{categoryTitle !== false && <h2>{categoryTitle || 'SubCategory'}</h2>}
-{
-  category.map((cate: any) => (
-    <CategoryItem
-      title={cate}
-      url={`/${root}/${cate}`}
-      style={linkStyle}
-      className={linkClassName}
-    />
-  ))
-}
+  <slot name="content-title">
+    <h3>content</h3>
+  </slot>
+
+  {
+    content.map((cate: any) => (
+      <CategoryItem
+        url={`/${collection}/${cate.slug}/`}
+        title={cate.data.title}
+        style={linkStyle}
+        className={linkClassName}
+      />
+    ))
+  }
+
+  <slot name="category-title">
+    <h3>category</h3>
+  </slot>
+  {
+    category.map((cate: any) => (
+      <CategoryItem
+        title={cate}
+        url={`/${root}/${cate}`}
+        style={linkStyle}
+        className={linkClassName}
+      />
+    ))
+  }
+</div>

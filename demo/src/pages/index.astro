@@ -16,20 +16,52 @@ import '@styles/global.css';
   <div class="item">
     <h1>Custom</h1>
     <CategoryRoot
-      title={false}
-      categoryTitle={false}
-      contentTitle={false}
       collection="posts"
       linkClassName="post-link blue round-5"
-    />
+    >
+      <h2
+        slot="title"
+        class="blue"
+      >
+        Posts
+      </h2>
+      <h3
+        slot="content-title"
+        class="blue"
+      >
+        content
+      </h3>
+      <h3
+        slot="category-title"
+        class="blue"
+      >
+        category
+      </h3>
+    </CategoryRoot>
     <CategoryRoot
-      title={false}
-      categoryTitle={false}
-      contentTitle={false}
       collection="blogs"
       root="categoryblog"
       linkClassName="blog-link red round-20"
-    />
+    >
+      <h2
+        slot="title"
+        class="red"
+      >
+        Blogs
+      </h2>
+      <h3
+        slot="content-title"
+        class="red"
+      >
+        content
+      </h3>
+      <h3
+        slot="category-title"
+        class="red"
+      >
+        category
+      </h3>
+    </CategoryRoot>
   </div>
 </div>
 <style>
@@ -46,7 +78,8 @@ import '@styles/global.css';
       display: flex;
       flex-flow: column nowrap;
       justify-content: flex-start;
-      align-items: center;
+      align-items: flex-start;
+      padding: 0 30px;
       &:nth-child(1) {
         border-right: 1px solid #ddd;
       }
